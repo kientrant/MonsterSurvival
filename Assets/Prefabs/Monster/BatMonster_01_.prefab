@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8169782941422962212}
   - component: {fileID: 892729913901765539}
   - component: {fileID: 548311014983325900}
-  - component: {fileID: 3601645450038659996}
+  - component: {fileID: 1159598458847402240}
   m_Layer: 0
   m_Name: BatMonster_01_
   m_TagString: Enemy
@@ -151,8 +151,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &3601645450038659996
-BoxCollider2D:
+--- !u!60 &1159598458847402240
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -183,7 +183,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07706332, y: 0.019929409}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -193,6 +193,20 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.49300146, y: 0.42220306}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.390625, y: 0.484375}
+      - {x: -0.015625, y: 0.296875}
+      - {x: -0.171875, y: 0.484375}
+      - {x: -0.578125, y: 0.484375}
+      - {x: -0.640625, y: 0.453125}
+      - {x: -0.640625, y: -0.046875}
+      - {x: -0.546875, y: -0.203125}
+      - {x: -0.296875, y: -0.234375}
+      - {x: -0.203125, y: -0.484375}
+      - {x: 0.203125, y: -0.484375}
+      - {x: 0.359375, y: -0.421875}
+      - {x: 0.578125, y: -0.328125}
+      - {x: 0.640625, y: -0.015625}
+      - {x: 0.640625, y: 0.484375}
+  m_UseDelaunayMesh: 0
