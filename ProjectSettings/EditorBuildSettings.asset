@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/ZombieMainMenu.unity
-    guid: c14a36bdb42dd2445995c0ad171e5cb8
+    path: Assets/Scenes/MainMenu.unity
+    guid: 6b7843e113700404ea61ef454876a89e
   - enabled: 1
-    path: Assets/Scenes/BackUp.unity
+    path: Assets/Scenes/Select.unity
+    guid: ee65459cf2163384b85e4b0fc946fb84
+  - enabled: 1
+    path: Assets/Scenes/MainGameScene.unity
     guid: 6ca6a24553b047547b1d3f69853b9901
   m_configObjects: {}

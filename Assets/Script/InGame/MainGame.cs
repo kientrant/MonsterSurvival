@@ -9,89 +9,84 @@ public class MainGame : MonoBehaviour
     [SerializeField]
     private GameObject[] player;
     [SerializeField]
-    private GameObject PlayerParent; 
-    public int frameRate = 60;
-    public GameObject infoUI, pauseUI, upgradeUI;
-    private bool isPlaying,isUpgrade = false;
+    private GameObject[] maps;
+    [SerializeField]
+    private GameObject PlayerParent;
+    [SerializeField]
+    private ValueTranser vT;
+    public int frameRate = 120;
+    public ValueTranser valueTran;
+
+    public GameObject infoUI, pauseUI, upgradeUI, gameOverUI;
+    public static bool isUpgrade = false;
+    public static bool isPause = false;
+
+    public PlayerData[] playerDatas;
+    private Transform playerSpawnPoint;
 
     private void Awake()
     {
         Application.targetFrameRate = frameRate;
+        Time.timeScale = 1f;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Transform playerSpawnPoint = GameObject.Find("PlayerSpawnPoint").transform;
-        GameObject go = Instantiate(player[0], playerSpawnPoint.position, Quaternion.identity);
+        
+        playerSpawnPoint = GameObject.Find("PlayerSpawnPoint").transform;
+        //LoadMap(1);
+        GameObject go = Instantiate(player[vT.ClassPlayer - 1], playerSpawnPoint.position, Quaternion.identity);
+        PlayerController.playerData = playerDatas[vT.ClassPlayer - 1];
 
-        go.transform.parent = PlayerParent.transform;
+        //go.transform.parent = PlayerParent.transform;
 
         pauseUI.SetActive(false);
         upgradeUI.SetActive(false);
         infoUI.SetActive(true);
+        gameOverUI.SetActive(false);
+    }
 
+    private async void LoadMap(int map_index)
+    {
+        GameObject map = Instantiate(maps[vT.MapName - 1], playerSpawnPoint.position, Quaternion.identity);
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPlaying)
-            {
-                PauseGame();
-                UIPauseActive();
-            }
-            else
-            {
-                ResumeGame();
-            }
+            TogglePause();
         }
-            
-
         if (isUpgrade)
         {
-            PauseGame();
-            upgradeActive();
+            ToggleUpgrade();
         }
-        else
+
+    }
+
+    private void TogglePause()
+    {
+        if (Time.timeScale == 1)
         {
-            upgradeDeActive();
-            ResumeGame();
+            Time.timeScale = 0f;
+            infoUI.SetActive(false);
+            pauseUI.SetActive(true);
+            isPause = true;
+        } else if (Time.timeScale == 0) {
+            Time.timeScale = 1f;
+            infoUI.SetActive(true);
+            pauseUI.SetActive(false);
+            isPause = false;
         }
 
     }
 
-    private void UIPauseActive()
+    private void ToggleUpgrade()
     {
-        infoUI.SetActive(false);
-        pauseUI.SetActive(true);
+
     }
 
-    private void PauseGame()
-    {
-        Time.timeScale = 0;
-        isPlaying = false;
-    }
-    private void ResumeGame()
-    {
-        Time.timeScale = 1;
-        infoUI.SetActive(true);
-        pauseUI.SetActive(false);
-        upgradeUI.SetActive(false);
-        isPlaying = true;
-    }
-
-    private void upgradeActive()
-    {
-        isUpgrade = true;
-        upgradeUI.SetActive(true);
-    }
-
-    private void upgradeDeActive()
-    {
-        isUpgrade = false;
-        upgradeUI.SetActive(false);
-    }
 }

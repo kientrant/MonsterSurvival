@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] bullet;
+    public static SkillData skillData;
+    public static BasisAttackData basisAttackData;
+
+    private GameObject bullet;
+    private GameObject skill;
+
     private GameObject parentObject;
     private PlayerController playerController;
     [SerializeField]
     private Transform crosshairTrans;
+
     // Start is called before the first frame update
     void Start()
     {
         parentObject = GameObject.FindGameObjectWithTag("Player");
         playerController = parentObject.GetComponent<PlayerController>();
+        bullet = PlayerController.playerData.basisAttack;
+        skill = PlayerController.playerData.Skill;
     }
 
     // Update is called once per frame
@@ -29,9 +36,9 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void Shot(int weaponIndex)   
+    public void Shot()   
     {
      
-        GameObject og = Instantiate(bullet[0], transform.position, Quaternion.Euler(0,0, transform.rotation.z));
+        GameObject og = Instantiate(bullet, transform.position, Quaternion.Euler(0,0, transform.rotation.z));
     }
 }

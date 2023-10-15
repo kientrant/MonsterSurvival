@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UpgradeController : MonoBehaviour
 {
+    public GameObject UpgradeUI;
     // Start is called before the first frame update
     void Start()
     {

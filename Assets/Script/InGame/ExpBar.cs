@@ -6,14 +6,18 @@ using UnityEngine.UI;
 
 public class ExpBar : MonoBehaviour
 {
-    [SerializeField]
-    private Image fillBar;
-    [SerializeField]
-    private TextMeshProUGUI valueText;
+    public Image fillBar;
+    public TextMeshProUGUI valueText;
 
-    public void UpdateBar(int currentValue, int maxValue)
+    public static float maxValue;
+    public static float currentValue;
+    private float percentOfExp = 0;
+
+    private void Update()
     {
-        fillBar.fillAmount = (float)currentValue / (float)maxValue;
-        valueText.text = currentValue.ToString() + " / " +  maxValue.ToString();
+        percentOfExp = (float)currentValue / (float)maxValue * 100;
+        fillBar.fillAmount = (float)percentOfExp / (float)100;
+        valueText.text = $"{(int)percentOfExp}";
     }
+
 }

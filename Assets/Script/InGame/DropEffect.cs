@@ -20,7 +20,6 @@ public class DropEffect : MonoBehaviour
         distance = Vector2.Distance(this.transform.position, target.transform.position);
         Vector2 direction = target.transform.position - transform.forward;
 
-        Debug.Log(target.transform.position);
         direction.Normalize();
         float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         //Debug.Log(angle);

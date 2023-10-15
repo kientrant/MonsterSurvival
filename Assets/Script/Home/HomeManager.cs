@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HomeManager : MonoBehaviour
 {
-    public Button btnPlay, btnSetting, btnQuit;
+    public Button btnPlay,btnCredit ,btnSetting, btnQuit;
 
     private void Start()
     {

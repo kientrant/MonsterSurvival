@@ -6,12 +6,16 @@ using UnityEngine.UI;
 
 public class HeartBar : MonoBehaviour
 {
-    [SerializeField]
-    private Image fillBar;
-    [SerializeField]
-    private TextMeshProUGUI valueText;
 
-    public void UpdateBar(int currentValue, int maxValue)
+    public Image fillBar;
+
+    public TextMeshProUGUI valueText;
+
+    public static float currentValue;
+    public static float maxValue;
+
+
+    private void Update()
     {
         fillBar.fillAmount = (float)currentValue / (float)maxValue;
         valueText.text = currentValue.ToString() + " / " + maxValue.ToString();

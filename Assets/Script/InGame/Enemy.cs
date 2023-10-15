@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +20,15 @@ public class Enemy : MonoBehaviour
     private GameObject coin;
     [SerializeField]
     private GameObject exp;
+    [SerializeField]
+    private GameObject DropPool;
 
-    private int[] monsterLevel = {1,2,3,4,5,6,7,8,9,10};
-
-    private int baseHeath = 10;
+    private static int baseHeath = 10;
     private int thisHeath ;
+
+    private bool canAttack;
+    private float timer;
+    private float delayAttack = 2f;
 
     private void Start()
     {
@@ -33,6 +37,8 @@ public class Enemy : MonoBehaviour
         sR = GetComponent<SpriteRenderer>();
         thisHeath = 5 * baseHeath;
     }
+
+
 
     // Update is called once per frame
     private void Update()
@@ -74,7 +80,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void GetDamege(int hitDamage)
+    //trả về this heath objects
+    public int GetDamege(int hitDamage)
     {
         
         thisHeath -= hitDamage;
@@ -82,6 +89,7 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
+        return thisHeath;
     }
 
     private int GetMonsterLevel ()
@@ -100,7 +108,8 @@ public class Enemy : MonoBehaviour
         int numberOfDrop =  new System.Random().Next(1 , level*2);
         for (int i = 0; i <= numberOfDrop; i++)
         {
-            Instantiate(coin, this.transform.position, Quaternion.identity);
+            GameObject op = Instantiate(coin, this.transform.position, Quaternion.identity);
+            op.transform.parent = DropPool.transform;
         }
     }
 
@@ -109,20 +118,23 @@ public class Enemy : MonoBehaviour
         int numberOfDrop = new System.Random().Next(1, level);
         for (int i = 0; i <= numberOfDrop; i++)
         {
-            Instantiate(exp, this.transform.position, Quaternion.identity);
+            GameObject op = Instantiate(exp, this.transform.position, Quaternion.identity);
+            op.transform.parent = DropPool.transform;
         }
     }
 
     private void Die()
     {
+        int monsterLevel = GetMonsterLevel();
+        DropCoin(monsterLevel);
+        DropExp(monsterLevel);
         Destroy(gameObject);
     }
 
     private void OnDestroy()
     {
-        int monsterLevel = GetMonsterLevel();
-        DropCoin(monsterLevel);
-        DropExp(monsterLevel);
+        
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -132,6 +144,22 @@ public class Enemy : MonoBehaviour
         {
             //Debug.Log("Hit");
             anim.SetBool("Attack", true);
+            if (!canAttack)
+            {
+                if (timer > delayAttack)
+                {
+                    canAttack = true;
+                }
+            }
+                if (canAttack)
+                {
+                    timer = 0;
+                    hit.gameObject.GetComponent<PlayerController>().GetDamege(GetMonsterLevel() * 10);
+                    canAttack = false;
+                }
+
+            timer += Time.deltaTime * 5;
+            
         }
     }
 

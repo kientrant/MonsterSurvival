@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 892729913901765539}
   - component: {fileID: 548311014983325900}
   - component: {fileID: 1159598458847402240}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BatMonster_01_
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -124,6 +124,7 @@ MonoBehaviour:
   speed: 1
   coin: {fileID: 8082779089233583157, guid: 09753eba2fcf87747ae2aa41cf58a919, type: 3}
   exp: {fileID: 7496064699680809087, guid: 3f1dfc8251cf90d499ce61f86483b3e9, type: 3}
+  DropPool: {fileID: 0}
 --- !u!50 &548311014983325900
 Rigidbody2D:
   serializedVersion: 4
