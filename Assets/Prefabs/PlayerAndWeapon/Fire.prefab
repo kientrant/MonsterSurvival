@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1699596646024787414}
   - component: {fileID: 9065368733309917215}
   m_Layer: 3
-  m_Name: Circle
+  m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,6 +448,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PlayerBody
       objectReference: {fileID: 0}
+    - target: {fileID: 2237384148227778111, guid: c630497c17d7ccc419c205b966248147, type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 3175685429878669145, guid: 92cdfa6072737f3408629832e4a2f680, type: 3}
+    - target: {fileID: 2237384148227778111, guid: c630497c17d7ccc419c205b966248147, type: 3}
+      propertyPath: center
+      value: 
+      objectReference: {fileID: 1593179839924877523}
     - target: {fileID: 2237384148227778111, guid: c630497c17d7ccc419c205b966248147, type: 3}
       propertyPath: playerBody
       value: 

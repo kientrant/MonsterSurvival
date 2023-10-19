@@ -15,7 +15,6 @@ public class MainGame : MonoBehaviour
     [SerializeField]
     private ValueTranser vT;
     public int frameRate = 120;
-    public ValueTranser valueTran;
 
     public GameObject infoUI, pauseUI, upgradeUI, gameOverUI;
     public static bool isUpgrade = false;
@@ -26,7 +25,6 @@ public class MainGame : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = frameRate;
         Time.timeScale = 1f;
     }
 

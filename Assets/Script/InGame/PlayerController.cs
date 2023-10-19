@@ -82,14 +82,13 @@ public class PlayerController : MonoBehaviour
 
     private void WalkAnimation(bool isWalk)
     {
-        if (isWalk)
+       if (isWalk)
         {
             animatorPlayer.Play("Player.Walk");
         } else
         {
             animatorPlayer.Play("Player.Idle");
         }
-        
     }
 
     public void GetDamege(int damege)
@@ -131,6 +130,7 @@ public class PlayerController : MonoBehaviour
             if (hit.gameObject.name.Contains("Coin"))
             {
                 GameObject.Destroy(hit.gameObject);
+                audioSources[0].Play();
             }
 
         }

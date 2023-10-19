@@ -1,3 +1,4 @@
+using EasyTransition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,10 @@ public class HomeManager : MonoBehaviour
 {
     public Button btnPlay,btnCredit ,btnSetting, btnQuit;
 
+    public TransitionSettings transitionSettings;
+
+    public float delayTransiton = 0.01f;
+
     private void Start()
     {
         btnPlay.onClick.AddListener(PlayClick);
@@ -17,7 +22,7 @@ public class HomeManager : MonoBehaviour
 
     public void PlayClick ()
     {
-        SceneManager.LoadScene(1);
+        TransitionManager.Instance().Transition(1 , transitionSettings, delayTransiton);
     }
 
     public void SettingClick ()

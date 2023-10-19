@@ -17,7 +17,7 @@ public class ExpBar : MonoBehaviour
     {
         percentOfExp = (float)currentValue / (float)maxValue * 100;
         fillBar.fillAmount = (float)percentOfExp / (float)100;
-        valueText.text = $"{(int)percentOfExp}";
+        valueText.text = $"{(int)percentOfExp} %";
     }
 
 }

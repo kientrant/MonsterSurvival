@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour
         int monsterLevel = GetMonsterLevel();
         DropCoin(monsterLevel);
         DropExp(monsterLevel);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 
     private void OnDestroy()

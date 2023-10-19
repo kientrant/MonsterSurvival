@@ -8,7 +8,6 @@ public class Weapon : MonoBehaviour
     public static BasisAttackData basisAttackData;
 
     private GameObject bullet;
-    private GameObject skill;
 
     private GameObject parentObject;
     private PlayerController playerController;
@@ -21,7 +20,6 @@ public class Weapon : MonoBehaviour
         parentObject = GameObject.FindGameObjectWithTag("Player");
         playerController = parentObject.GetComponent<PlayerController>();
         bullet = PlayerController.playerData.basisAttack;
-        skill = PlayerController.playerData.Skill;
     }
 
     // Update is called once per frame

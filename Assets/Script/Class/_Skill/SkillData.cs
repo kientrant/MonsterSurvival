@@ -10,9 +10,10 @@ public class SkillData : ScriptableObject
 
     public int damage;
 
+    [Range(1f,100f)]
     public float duration;
-
+    [Range(1f, 5f)]
     public int size;
-
-    public GameObject SkillPrefab;
+    [Range(1f, 5f)]
+    public float speed;
 }

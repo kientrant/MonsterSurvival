@@ -334,6 +334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 169822824}
+  - component: {fileID: 169822825}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -356,6 +357,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &169822825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169822822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61430b0086307cc4da3ccc8d39ae88da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionTemplate: {fileID: 5276914992623515724, guid: 616d511151a6c554caddf1c754e4f91d, type: 3}
 --- !u!1 &176319063
 GameObject:
   m_ObjectHideFlags: 0
@@ -4764,6 +4778,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vT: {fileID: 11400000, guid: d3b2ea2de7d32cd43b627cf16a3b5f9d, type: 2}
+  transitionSettings: {fileID: 11400000, guid: 57d2dee28715fc6499379ee5905b3caf, type: 2}
+  delayTransiton: 0.01
 --- !u!1 &1597916306
 GameObject:
   m_ObjectHideFlags: 0

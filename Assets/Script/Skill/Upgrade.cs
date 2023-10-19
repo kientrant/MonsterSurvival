@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Upgrade : MonoBehaviour
+public class UpgradeClass
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int Name { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private string Description { get; set; }
+
+    private float Value { get; set; }
+
+    private int CommonValue { get; set; }
+
+    private int Type { get; set; }
+
 }

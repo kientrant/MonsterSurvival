@@ -11,14 +11,19 @@ public class Attack : MonoBehaviour
     public static bool canFire, canSkill;
     private static float timer, timer2;
     [SerializeField]
-    public static float cooldownFire = 5f;
-    public static float cooldownSkill = 50f;
+    private static float cooldownFire = 5f;
+    public static float cooldownSkill = 10f;
 
     public GameObject playerBody;
 
     private Animator playerAnimator;
 
     private GameObject weaponOfPlayer;
+    [SerializeField]
+    private GameObject center;
+    [SerializeField]
+    private GameObject skill;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +45,7 @@ public class Attack : MonoBehaviour
         float rotate = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotate);
 
+        //Basic Attack
         if (!canFire)
         {
             if (timer > cooldownFire)
@@ -59,12 +65,40 @@ public class Attack : MonoBehaviour
         }
 
         timer += Time.deltaTime * 5;
+        //Skill
+
+        if (!canSkill)
+        {
+            if (timer2 > cooldownFire)
+            {
+                canSkill = true;
+            }
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            if (canSkill)
+            {
+                timer2 = 0;
+                PlayerSkill();
+                canSkill = false;
+            }
+        }
+
+        timer2 += Time.deltaTime * 5;
     }
 
     public void PlayerAttack()
     {
         playerAnimator.Play("Player.BasisAttack");
         weaponOfPlayer.GetComponent<Weapon>().Shot();
+    }
+
+    public void PlayerSkill()
+    {
+        playerAnimator.Play("Player.SkillAttack");
+        GameObject og = Instantiate(skill, center.transform.position, Quaternion.identity);
+        og.transform.parent = center.transform;
     }
 
 }  
