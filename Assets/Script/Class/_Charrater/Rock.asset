@@ -18,8 +18,10 @@ MonoBehaviour:
   Heart: 200
   Depend: 0.9
   Strength: 3
+  attackCoolDown: 5
   Dexterity: 4
   numberProjective: 1
+  skillCoolDown: 20
   SizeOfSkill: 1
   StrengthOfSkill: 1.2
   basisAttack: {fileID: 0}

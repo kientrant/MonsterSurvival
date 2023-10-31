@@ -13,11 +13,15 @@ public class ExpBar : MonoBehaviour
     public static float currentValue;
     private float percentOfExp = 0;
 
+    public TextMeshProUGUI valueCoin;
+    public static int coinPlayer;
+
     private void Update()
     {
         percentOfExp = (float)currentValue / (float)maxValue * 100;
         fillBar.fillAmount = (float)percentOfExp / (float)100;
         valueText.text = $"{(int)percentOfExp} %";
+        valueCoin.text = $"{(int)coinPlayer}";
     }
 
 }

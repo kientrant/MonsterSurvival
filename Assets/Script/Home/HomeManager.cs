@@ -1,4 +1,5 @@
 using EasyTransition;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,17 +8,39 @@ using UnityEngine.UI;
 
 public class HomeManager : MonoBehaviour
 {
-    public Button btnPlay,btnCredit ,btnSetting, btnQuit;
+    public Button btnPlay,btnCredit ,btnSetting, btnQuit, btnCreditClose;
 
     public TransitionSettings transitionSettings;
 
     public float delayTransiton = 0.01f;
 
+    public GameObject settingMenu;
+
+    public GameObject creditPanel;
+
+    private void Awake()
+    {
+        settingMenu.SetActive(false);
+        creditPanel.SetActive(false);
+    }
+
     private void Start()
     {
         btnPlay.onClick.AddListener(PlayClick);
         btnSetting.onClick.AddListener(SettingClick);
+        btnCredit.onClick.AddListener(CreditClick);
         btnQuit.onClick.AddListener(QuitClick);
+        btnCreditClose.onClick.AddListener(CloseCredit);
+    }
+
+    private void CloseCredit()
+    {
+        creditPanel.SetActive(false);
+    }
+
+    private void CreditClick()
+    {
+        creditPanel.SetActive(true);
     }
 
     public void PlayClick ()
@@ -27,7 +50,7 @@ public class HomeManager : MonoBehaviour
 
     public void SettingClick ()
     {
-        Debug.Log("Setting");
+        settingMenu.SetActive(true);
     }
     public void QuitClick()
     {

@@ -19,12 +19,16 @@ public class PlayerData : ScriptableObject
 
     public float Strength = 10f;
 
+    public float attackCoolDown = 1f;
+
     public float Dexterity = 5f;
 
     public int numberProjective = 1;
 
 
     //skill stat
+    public float skillCoolDown = 1f;
+
     public float SizeOfSkill = 1f;
 
     public float StrengthOfSkill = 1f;

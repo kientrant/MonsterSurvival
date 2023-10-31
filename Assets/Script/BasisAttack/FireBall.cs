@@ -14,7 +14,6 @@ public class FireBall : MonoBehaviour
     private float liveTime;
 
     public GameObject exploision;
-    private PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,10 +48,27 @@ public class FireBall : MonoBehaviour
         Collider2D hit = collision.collider;
         if (hit.gameObject.tag == "Enemy")
         {
-            hit.gameObject.GetComponent<Enemy>().GetDamege(50);
+            hit.gameObject.GetComponent<Enemy>().GetDamege(Mathf.CeilToInt(PlayerController.playerData.Strength));
             Destroy(gameObject);
             Instantiate(exploision, transform.position, transform.rotation);
         } else
+        {
+            Destroy(gameObject);
+            Instantiate(exploision, transform.position, transform.rotation);
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Collider2D hit = collision;
+        if (hit.gameObject.tag == "Enemy")
+        {
+            hit.gameObject.GetComponent<Enemy>().GetDamege( Mathf.CeilToInt(PlayerController.playerData.Strength));
+            Destroy(gameObject);
+            Instantiate(exploision, transform.position, transform.rotation);
+        }
+        else
         {
             Destroy(gameObject);
             Instantiate(exploision, transform.position, transform.rotation);

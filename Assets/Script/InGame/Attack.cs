@@ -18,18 +18,22 @@ public class Attack : MonoBehaviour
 
     private Animator playerAnimator;
 
-    private GameObject weaponOfPlayer;
+    private GameObject[] weaponOfPlayer;
     [SerializeField]
     private GameObject center;
     [SerializeField]
     private GameObject skill;
+    [SerializeField]
+    private AudioSource basisSource;
+    [SerializeField]
+    private AudioSource skillSource;
 
 
     // Start is called before the first frame update
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        weaponOfPlayer = GameObject.FindGameObjectWithTag("Weapon");
+        weaponOfPlayer = GameObject.FindGameObjectsWithTag("Weapon");
         canFire = canSkill = false;
         timer = 0;
         playerAnimator = playerBody.GetComponent<Animator>();
@@ -45,6 +49,10 @@ public class Attack : MonoBehaviour
         float rotate = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotate);
 
+
+        cooldownFire = PlayerController.playerData.attackCoolDown;
+
+        cooldownSkill = PlayerController.playerData.skillCoolDown;
         //Basic Attack
         if (!canFire)
         {
@@ -64,7 +72,7 @@ public class Attack : MonoBehaviour
             }
         }
 
-        timer += Time.deltaTime * 5;
+        timer += Time.deltaTime * 1;
         //Skill
 
         if (!canSkill)
@@ -85,18 +93,26 @@ public class Attack : MonoBehaviour
             }
         }
 
-        timer2 += Time.deltaTime * 5;
+        timer2 += Time.deltaTime * 1;
     }
 
     public void PlayerAttack()
     {
         playerAnimator.Play("Player.BasisAttack");
-        weaponOfPlayer.GetComponent<Weapon>().Shot();
+        //basisSource.Play();
+        weaponOfPlayer[0].GetComponent<Weapon>().Shot();
+        if (weaponOfPlayer.Length > 1) {
+            for (int i = 1; i <= weaponOfPlayer.Length; i++)
+            {
+                weaponOfPlayer[i].GetComponent<Weapon>().Shot();
+            }
+        }
     }
 
     public void PlayerSkill()
     {
         playerAnimator.Play("Player.SkillAttack");
+        //skillSource.Play();
         GameObject og = Instantiate(skill, center.transform.position, Quaternion.identity);
         og.transform.parent = center.transform;
     }

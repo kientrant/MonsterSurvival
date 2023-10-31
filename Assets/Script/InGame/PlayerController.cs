@@ -1,10 +1,11 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using Unity.Mathematics;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float walkSpeed;
+
     private Rigidbody2D rb2D;
     private Vector2 movement;
     [SerializeField] private GameObject playeyBody;
@@ -16,16 +17,19 @@ public class PlayerController : MonoBehaviour
     public static PlayerData playerData;
     public static int exp;
     public static int heath;
+    public static int maxHeath;
     public static int level;
+    public static int expMultiple = 1;
 
 
     //inPlayer
     public int[] ExpScale = { 100, 150, 225, 300, 400, 534, 712, 949, 1265, 1686, 2248, 2997, 3996, 5328, 7104, 9471, 12628, 16837, 22450, 29933, 39910, 53214, 70951, 94602, 126135, 168180, 224240, 298987 };
     private static int currentExp = 0;
     private static int thisLevel = 0;
-    const int EXP_PER_ACTION = 10;
+    private int EXP_PER_ACTION = 10 * expMultiple;
 
-
+    private float walkSpeed;
+    private float depend;
 
     // Start is called before the first frame update
     private void Start()
@@ -34,11 +38,10 @@ public class PlayerController : MonoBehaviour
         animatorPlayer = playeyBody.GetComponent<Animator>();
         audioSources = gameObject.GetComponents<AudioSource>();
 
-
         rb2D.mass = 10000000f;
-        Cursor.visible = false;
         walkSpeed = playerData.Dexterity;
         heath = playerData.Heart;
+        depend = playerData.Depend;
         exp = 0;
         thisLevel = 0;
         currentExp = 0;
@@ -61,7 +64,9 @@ public class PlayerController : MonoBehaviour
         {
             WalkAnimation(false);
         }
-        
+        walkSpeed = playerData.Dexterity;
+        maxHeath = playerData.Heart;
+        depend = playerData.Depend;
     }
 
     private void LateUpdate()
@@ -70,14 +75,14 @@ public class PlayerController : MonoBehaviour
         ExpBar.maxValue = ExpScale[thisLevel];
 
         HeartBar.currentValue = heath;
-        HeartBar.maxValue = playerData.Heart;
+        HeartBar.maxValue = maxHeath;
 
         LevelUI.Level = thisLevel;
     }
 
-    public void upgrade()
+    public void upgradeValue()
     {
-        walkSpeed = playerData.Dexterity;
+
     }
 
     private void WalkAnimation(bool isWalk)
@@ -93,7 +98,8 @@ public class PlayerController : MonoBehaviour
 
     public void GetDamege(int damege)
     {
-        heath -= damege;
+        animatorPlayer.Play("Player.Hurt");
+        heath -= (int) math.ceil(damege * depend);
     }
 
     private void GetExp(int exp)
@@ -105,6 +111,7 @@ public class PlayerController : MonoBehaviour
             thisLevel += 1;
             Debug.Log(thisLevel);
             currentExp = 0;
+            MainGame.isUpgrade = true;
         }
     }
 

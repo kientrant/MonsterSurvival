@@ -21,6 +21,7 @@ public class MainGame : MonoBehaviour
     public static bool isPause = false;
 
     public PlayerData[] playerDatas;
+    public PlayerData currentPlayer;
     private Transform playerSpawnPoint;
 
     private void Awake()
@@ -35,7 +36,8 @@ public class MainGame : MonoBehaviour
         playerSpawnPoint = GameObject.Find("PlayerSpawnPoint").transform;
         //LoadMap(1);
         GameObject go = Instantiate(player[vT.ClassPlayer - 1], playerSpawnPoint.position, Quaternion.identity);
-        PlayerController.playerData = playerDatas[vT.ClassPlayer - 1];
+        currentPlayer = playerDatas[vT.ClassPlayer - 1];
+        PlayerController.playerData = currentPlayer;
 
         //go.transform.parent = PlayerParent.transform;
 
@@ -58,9 +60,13 @@ public class MainGame : MonoBehaviour
         {
             TogglePause();
         }
+
         if (isUpgrade)
         {
-            ToggleUpgrade();
+            ToggleUpgarde();
+        } else
+        {
+            unToggleUpgarde();
         }
 
     }
@@ -82,9 +88,21 @@ public class MainGame : MonoBehaviour
 
     }
 
-    private void ToggleUpgrade()
+    public void ToggleUpgarde()
     {
-
+        Time.timeScale = 0f;
+        infoUI.SetActive(false);
+        upgradeUI.SetActive(true);
+        isPause = true;
     }
+
+    public void unToggleUpgarde()
+    {
+        Time.timeScale = 1f;
+        infoUI.SetActive(true);
+        upgradeUI.SetActive(false);
+        isPause = false;
+    }
+
 
 }

@@ -18,6 +18,7 @@ public class FireCastControler : MonoBehaviour
         this .damage = fireCast.damage;
         this.duration = fireCast.duration;
         this.size = fireCast.size;
+        gameObject.GetComponent<Transform>().localScale = new Vector2(PlayerController.playerData.SizeOfSkill, PlayerController.playerData.SizeOfSkill);
         fireCastAnimaror = GetComponent<Animator>();
     }
 
@@ -33,7 +34,7 @@ public class FireCastControler : MonoBehaviour
         Collider2D hit = collision;
         if (hit.gameObject.tag == "Enemy")
         {
-            hit.gameObject.GetComponent<Enemy>().GetDamege(100);
+            hit.gameObject.GetComponent<Enemy>().GetDamege(Mathf.CeilToInt( PlayerController.playerData.StrengthOfSkill));
         }
      }
 }
