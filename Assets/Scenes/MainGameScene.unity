@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 205509161}
   - component: {fileID: 205509160}
   - component: {fileID: 205509159}
+  - component: {fileID: 205509162}
   m_Layer: 0
   m_Name: QuitToMenu
   m_TagString: Untagged
@@ -363,7 +364,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 205509160}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 205509162}
+        m_TargetAssemblyTypeName: MainGame, Assembly-CSharp
+        m_MethodName: Quit2Menu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &205509160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +415,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205509157}
   m_CullTransparentMesh: 1
+--- !u!114 &205509162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205509157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2d999fa96f93844aaa0fdae2e927aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: []
+  maps: []
+  PlayerParent: {fileID: 0}
+  vT: {fileID: 0}
+  frameRate: 120
+  infoUI: {fileID: 0}
+  pauseUI: {fileID: 0}
+  upgradeUI: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  playerDatas: []
+  currentPlayer: {fileID: 0}
 --- !u!1 &275160697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,6 +2617,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: af99c0c4f6fbccd4d994d9ef22fc7bb0, type: 2}
   - {fileID: 11400000, guid: 97de77345afb1ca4498ed017ca2ff896, type: 2}
   - {fileID: 11400000, guid: 0a7b5de3fe0f3c64490c782256b26670, type: 2}
+  currentPlayer: {fileID: 0}
 --- !u!1 &853254290
 GameObject:
   m_ObjectHideFlags: 0
@@ -4048,6 +4085,7 @@ GameObject:
   - component: {fileID: 1163336342}
   - component: {fileID: 1163336341}
   - component: {fileID: 1163336340}
+  - component: {fileID: 1163336343}
   m_Layer: 0
   m_Name: Resume
   m_TagString: Untagged
@@ -4119,18 +4157,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1163336343}
+        m_TargetAssemblyTypeName: MainGame, Assembly-CSharp
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &1163336341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4169,6 +4207,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163336338}
   m_CullTransparentMesh: 1
+--- !u!114 &1163336343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163336338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2d999fa96f93844aaa0fdae2e927aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: []
+  maps: []
+  PlayerParent: {fileID: 0}
+  vT: {fileID: 0}
+  frameRate: 120
+  infoUI: {fileID: 0}
+  pauseUI: {fileID: 0}
+  upgradeUI: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  playerDatas: []
+  currentPlayer: {fileID: 0}
 --- !u!4 &1170246155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 189849718670741337, guid: 198ac55afc66ec24a9dab43897f9d96f, type: 3}
@@ -6799,6 +6860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fillBar: {fileID: 389396932}
   valueText: {fileID: 339056081}
+  valueCoin: {fileID: 0}
 --- !u!114 &1838447988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6838,6 +6900,7 @@ GameObject:
   - component: {fileID: 1870505880}
   - component: {fileID: 1870505879}
   - component: {fileID: 1870505878}
+  - component: {fileID: 1870505881}
   m_Layer: 0
   m_Name: Reset
   m_TagString: Untagged
@@ -6908,7 +6971,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1870505879}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1870505881}
+        m_TargetAssemblyTypeName: MainGame, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1870505879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6947,6 +7022,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870505876}
   m_CullTransparentMesh: 1
+--- !u!114 &1870505881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870505876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2d999fa96f93844aaa0fdae2e927aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: []
+  maps: []
+  PlayerParent: {fileID: 0}
+  vT: {fileID: 0}
+  frameRate: 120
+  infoUI: {fileID: 0}
+  pauseUI: {fileID: 0}
+  upgradeUI: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  playerDatas: []
+  currentPlayer: {fileID: 0}
 --- !u!1 &1900771566
 GameObject:
   m_ObjectHideFlags: 0

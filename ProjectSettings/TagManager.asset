@@ -12,6 +12,8 @@ TagManager:
   - PlayerBody
   - PlayerWeapon
   - Bullet
+  - floor
+  - spawnObject
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - Bullet
   - DropItem
   - Enemy
-  - 
+  - Map
   - 
   - 
   - 

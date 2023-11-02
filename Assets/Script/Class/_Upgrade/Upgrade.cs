@@ -13,6 +13,8 @@ public class Upgrade
         Strength,
         Dexterity,
         Projective,
+        FireCoolDown,
+        SkillCollDown,
         SkillSize,
         SkillDamage,
         ExpMulti,

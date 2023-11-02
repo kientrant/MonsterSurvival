@@ -180,33 +180,52 @@ public class UpgradeController : MonoBehaviour
 
         switch (upgrade.type)
         {
+
+            //1
             case Upgrade.TypeUpgrade.Heart:
                 var eHeart = playerD.Heart;
                 playerD.Heart += Mathf.CeilToInt(eHeart * upgrade.upgradeValue);
                 break;
+            //2
             case Upgrade.TypeUpgrade.Depend:
                 var eDepend = playerD.Depend;
                 playerD.Depend -= Mathf.Ceil(upgrade.upgradeValue * eDepend);
                 break;
+            //3
             case Upgrade.TypeUpgrade.Strength:
                 var eStrength = playerD.Strength;
                 playerD.Strength += Mathf.Ceil(eStrength * upgrade.upgradeValue);
                 break;
+            //4
             case Upgrade.TypeUpgrade.Dexterity:
                 var eDexterity = playerD.Dexterity;
                 playerD.Dexterity += Mathf.Ceil(eDexterity * upgrade.upgradeValue);
                 break;
+            //5
+            case Upgrade.TypeUpgrade.FireCoolDown:
+                var eFireCoolDown = playerD.attackCoolDown;
+                playerD.attackCoolDown -= Mathf.Ceil(eFireCoolDown * upgrade.upgradeValue);
+                break;
+            //6
+            case Upgrade.TypeUpgrade.SkillCollDown:
+                var eSkillCollDown = playerD.skillCoolDown;
+                playerD.skillCoolDown -= Mathf.Ceil(eSkillCollDown * upgrade.upgradeValue);
+                break;
+            //7
             case Upgrade.TypeUpgrade.SkillSize:
                 var eSkillSize = playerD.SizeOfSkill;
                 playerD.SizeOfSkill += Mathf.Ceil(eSkillSize * upgrade.upgradeValue);
                 break;
+            //8
             case Upgrade.TypeUpgrade.SkillDamage:
                 var eSkillDamage = playerD.StrengthOfSkill;
                 playerD.StrengthOfSkill += Mathf.Ceil(eSkillDamage * upgrade.upgradeValue);
                 break;
+            //9
             case Upgrade.TypeUpgrade.ExpMulti:
                 PlayerController.expMultiple = (int)upgrade.upgradeValue;
                 break;
+            //10
             default:
                 break;
         }

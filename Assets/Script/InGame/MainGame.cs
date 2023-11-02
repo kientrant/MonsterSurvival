@@ -24,6 +24,8 @@ public class MainGame : MonoBehaviour
     public PlayerData currentPlayer;
     private Transform playerSpawnPoint;
 
+    private string SceneName = "MainGameScene";
+
     private void Awake()
     {
         Time.timeScale = 1f;
@@ -79,7 +81,8 @@ public class MainGame : MonoBehaviour
             infoUI.SetActive(false);
             pauseUI.SetActive(true);
             isPause = true;
-        } else if (Time.timeScale == 0) {
+        }
+        if (Time.timeScale == 0f) {
             Time.timeScale = 1f;
             infoUI.SetActive(true);
             pauseUI.SetActive(false);
@@ -104,5 +107,20 @@ public class MainGame : MonoBehaviour
         isPause = false;
     }
 
+    public virtual void Reset ()
+    {
+        SceneManager.LoadScene(this.SceneName);
+    }
+
+    public void Resume ()
+    {
+        TogglePause();
+    }
+
+    public void Quit2Menu()
+    {
+        //main menu
+        SceneManager.LoadScene(0);
+    }
 
 }

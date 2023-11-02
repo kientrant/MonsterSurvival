@@ -14,34 +14,66 @@ public class Water : MonoBehaviour
     private float liveTime;
 
     public GameObject exploision;
-    private PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
         //Lấy main cam object
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        rb = GetComponent<Rigidbody2D>();
         //Lấy vị trí chuột
         m_Position = mainCam.ScreenToWorldPoint(Input.mousePosition);
         //lấy hướng cần bắn đạn
         Vector3 rotation = m_Position - transform.position;
+        //Thêm lực vào viên đạn bay
+        rb.velocity = new Vector2(rotation.x, rotation.y).normalized * force;
 
         //Chuyển thành độ quay
         float rotate = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0, 0, rotate + 90);
+        transform.rotation = Quaternion.Euler(0, 0, rotate);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    // Update is called once per frame
+    void Update()
+    {
+        liveTime += Time.deltaTime;
+        //Debug.Log(liveTime);
+        if (liveTime > deadTime)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Collider2D hit = collision.collider;
+        if (hit.gameObject.tag == "Enemy")
+        {
+            hit.gameObject.GetComponent<Enemy>().GetDamege(Mathf.CeilToInt(PlayerController.playerData.Strength));
+            Destroy(gameObject);
+            Instantiate(exploision, transform.position, transform.rotation);
+        }
+        else
+        {
+            Destroy(gameObject);
+            Instantiate(exploision, transform.position, transform.rotation);
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Collider2D hit = collision;
         if (hit.gameObject.tag == "Enemy")
         {
-            hit.gameObject.GetComponent<Enemy>().GetDamege(10);
-            //Instantiate(exploision, transform.position, transform.rotation);
+            hit.gameObject.GetComponent<Enemy>().GetDamege(Mathf.CeilToInt(PlayerController.playerData.Strength));
+            Destroy(gameObject);
+            Instantiate(exploision, transform.position, transform.rotation);
         }
         else
         {
-            //Instantiate(exploision, transform.position, transform.rotation);
+            Destroy(gameObject);
+            Instantiate(exploision, transform.position, transform.rotation);
         }
     }
 }
