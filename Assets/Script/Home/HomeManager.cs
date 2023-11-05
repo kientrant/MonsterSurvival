@@ -14,6 +14,8 @@ public class HomeManager : MonoBehaviour
 
     public float delayTransiton = 0.01f;
 
+    public GameObject mainMenu;
+
     public GameObject settingMenu;
 
     public GameObject creditPanel;
@@ -51,6 +53,7 @@ public class HomeManager : MonoBehaviour
     public void SettingClick ()
     {
         settingMenu.SetActive(true);
+        mainMenu.SetActive(false);
     }
     public void QuitClick()
     {

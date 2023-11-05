@@ -12,6 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Select.unity
     guid: ee65459cf2163384b85e4b0fc946fb84
   - enabled: 1
-    path: Assets/Scenes/MainGameScene.unity
+    path: Assets/Scenes/Map1.unity
     guid: 6ca6a24553b047547b1d3f69853b9901
+  - enabled: 1
+    path: Assets/Scenes/Map2.unity
+    guid: 3b67f4174b458564ba3d35a254e03a37
+  - enabled: 1
+    path: Assets/Scenes/map3.unity
+    guid: 03d01e43473ad9b459e64735f8259735
+  - enabled: 1
+    path: Assets/Scenes/map4.unity
+    guid: 2e19fbaa698ba904e824707f74941d90
+  - enabled: 1
+    path: Assets/Scenes/Map5.unity
+    guid: f5803b39950d153408d69b840be7ba78
   m_configObjects: {}

@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject playeyBody;
     private Animator animatorPlayer;
     private string PlayerClass;
+    //0 is coin
     private AudioSource[] audioSources;
+    public static int soundV;
 
     //For Static
     public static PlayerData playerData;
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public static int heath;
     public static int maxHeath;
     public static int level;
+    public static int coin;
     public static int expMultiple = 1;
 
 
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
         exp = 0;
         thisLevel = 0;
         currentExp = 0;
+        coin = PlayerPrefs.GetInt("Coin");
     }
 
     private void Awake()
@@ -67,6 +71,8 @@ public class PlayerController : MonoBehaviour
         walkSpeed = playerData.Dexterity;
         maxHeath = playerData.Heart;
         depend = playerData.Depend;
+
+
     }
 
     private void LateUpdate()
@@ -77,7 +83,14 @@ public class PlayerController : MonoBehaviour
         HeartBar.currentValue = heath;
         HeartBar.maxValue = maxHeath;
 
+        ExpBar.coinPlayer = coin;
+
         LevelUI.Level = thisLevel;
+
+        audioSources[0].volume = soundV;
+
+        PlayerPrefs.SetInt("Coin", coin);
+        PlayerPrefs.Save();
     }
 
     public void upgradeValue()
@@ -87,10 +100,11 @@ public class PlayerController : MonoBehaviour
 
     private void WalkAnimation(bool isWalk)
     {
-       if (isWalk)
+        if (isWalk)
         {
             animatorPlayer.Play("Player.Walk");
-        } else
+        }
+        else
         {
             animatorPlayer.Play("Player.Idle");
         }
@@ -115,9 +129,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void GetCoin(int coin)
+    private void GetCoin(int coinIn)
     {
-
+        coin += coinIn;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -136,6 +150,7 @@ public class PlayerController : MonoBehaviour
             }
             if (hit.gameObject.name.Contains("Coin"))
             {
+                GetCoin(1);
                 GameObject.Destroy(hit.gameObject);
                 audioSources[0].Play();
             }

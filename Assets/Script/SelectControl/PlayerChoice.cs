@@ -16,7 +16,7 @@ public class PlayerChoice : MonoBehaviour
 
     public void getPlayerClass()
     {
-    vT.ClassPlayer = index;
+        vT.ClassPlayer = index;
     }
 
 }

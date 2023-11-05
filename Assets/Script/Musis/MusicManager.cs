@@ -6,11 +6,13 @@ public class MusicManager : MonoBehaviour
 {
 
     [Range(1,100)]
-    public int volume;
+    public static int volume;
     //[SerializeField]
     //private AudioClip backGoundMusic;
 
     private AudioSource audioSource;
+
+    private bool isLoad;
 
     private void Awake()
     {
@@ -20,12 +22,16 @@ public class MusicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource.Play();
+        isLoad =  true;
+        if (isLoad != true)
+        {
+            audioSource.Play();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        this.audioSource.volume = volume;
     }
 }

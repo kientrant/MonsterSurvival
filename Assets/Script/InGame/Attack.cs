@@ -18,6 +18,7 @@ public class Attack : MonoBehaviour
 
     private Animator playerAnimator;
 
+    [SerializeField]
     private GameObject[] weaponOfPlayer;
     [SerializeField]
     private GameObject center;
@@ -37,6 +38,9 @@ public class Attack : MonoBehaviour
         canFire = canSkill = false;
         timer = 0;
         playerAnimator = playerBody.GetComponent<Animator>();
+        cooldownFire = PlayerController.playerData.attackCoolDown;
+        cooldownSkill = PlayerController.playerData.skillCoolDown;
+
     }
 
     // Update is called once per frame
@@ -53,6 +57,10 @@ public class Attack : MonoBehaviour
         cooldownFire = PlayerController.playerData.attackCoolDown;
 
         cooldownSkill = PlayerController.playerData.skillCoolDown;
+
+        basisSource.volume = PlayerController.soundV;
+        skillSource.volume = PlayerController.soundV;
+
         //Basic Attack
         if (!canFire)
         {
@@ -98,8 +106,8 @@ public class Attack : MonoBehaviour
 
     public void PlayerAttack()
     {
-        playerAnimator.Play("Player.BasisAttack");
-        //basisSource.Play();
+        //playerAnimator.Play("Player.BasisAttack");
+        basisSource.Play();
         weaponOfPlayer[0].GetComponent<Weapon>().Shot();
         if (weaponOfPlayer.Length > 1) {
             for (int i = 1; i <= weaponOfPlayer.Length; i++)
@@ -112,7 +120,7 @@ public class Attack : MonoBehaviour
     public void PlayerSkill()
     {
         playerAnimator.Play("Player.SkillAttack");
-        //skillSource.Play();
+        skillSource.Play();
         GameObject og = Instantiate(skill, center.transform.position, Quaternion.identity);
         og.transform.parent = center.transform;
     }

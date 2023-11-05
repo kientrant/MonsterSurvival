@@ -144,9 +144,8 @@ public class SpawnMega : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		
-		//	ObSingle = GameObject.FindWithTag("spawnObject");
-		if (startAtSpecificX || startAtSpecificY || startAtSpecificZ) {
+        //	ObSingle = GameObject.FindWithTag("spawnObject");
+        if (startAtSpecificX || startAtSpecificY || startAtSpecificZ) {
 			After = false;
 			AfterX = false;
 			AfterY = false;

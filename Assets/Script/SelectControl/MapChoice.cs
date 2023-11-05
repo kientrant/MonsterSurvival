@@ -10,5 +10,6 @@ public class MapChoice : MonoBehaviour
     public void MapSelect()
     {
         transer.MapName = index;
+        Debug.Log(transer.MapName);
     }
 }

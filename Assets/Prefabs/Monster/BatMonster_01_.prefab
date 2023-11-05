@@ -124,7 +124,7 @@ MonoBehaviour:
   speed: 1
   coin: {fileID: 8082779089233583157, guid: 09753eba2fcf87747ae2aa41cf58a919, type: 3}
   exp: {fileID: 7496064699680809087, guid: 3f1dfc8251cf90d499ce61f86483b3e9, type: 3}
-  DropPool: {fileID: 0}
+  levelEnemy: 5
 --- !u!50 &548311014983325900
 Rigidbody2D:
   serializedVersion: 4
@@ -137,7 +137,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0

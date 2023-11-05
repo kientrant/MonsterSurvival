@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1314858200421069519}
   - component: {fileID: 7391472554139924142}
   - component: {fileID: 6980805366344360028}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireBallDetroy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

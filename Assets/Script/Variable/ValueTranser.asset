@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a92dc8c61a6f8409ba89e949c68a60, type: 3}
   m_Name: ValueTranser
   m_EditorClassIdentifier: 
-  ClassPlayer: 1
+  ClassPlayer: 2
   MapName: 1

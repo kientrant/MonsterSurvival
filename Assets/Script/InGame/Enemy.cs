@@ -20,10 +20,11 @@ public class Enemy : MonoBehaviour
     private GameObject coin;
     [SerializeField]
     private GameObject exp;
-    [SerializeField]
     private GameObject DropPool;
 
     private static int baseHeath = 10;
+    [SerializeField]
+    private int levelEnemy;
     private int thisHeath ;
 
     private bool canAttack;
@@ -35,7 +36,8 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sR = GetComponent<SpriteRenderer>();
-        thisHeath = 5 * baseHeath;
+        thisHeath = levelEnemy * baseHeath;
+        DropPool = GameObject.Find("DropPool");
     }
 
 
@@ -92,17 +94,6 @@ public class Enemy : MonoBehaviour
         return thisHeath;
     }
 
-    private int GetMonsterLevel ()
-    {
-        int level = 0;
-        String monsterName = this.gameObject.name;
-
-        level = int.Parse(monsterName.Split('_')[1]); 
-
-        return level;
-
-    }
-
     private void DropCoin(int level)
     {
         int numberOfDrop =  new System.Random().Next(1 , level*2);
@@ -125,9 +116,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        int monsterLevel = GetMonsterLevel();
-        DropCoin(monsterLevel);
-        DropExp(monsterLevel);
+        DropCoin(levelEnemy);
+        DropExp(levelEnemy);
         Destroy(this.gameObject);
     }
 
@@ -154,7 +144,7 @@ public class Enemy : MonoBehaviour
                 if (canAttack)
                 {
                     timer = 0;
-                    hit.gameObject.GetComponent<PlayerController>().GetDamege(GetMonsterLevel() * 10);
+                    hit.gameObject.GetComponent<PlayerController>().GetDamege(levelEnemy * 5);
                     canAttack = false;
                 }
 

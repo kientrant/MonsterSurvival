@@ -17,12 +17,12 @@ MonoBehaviour:
   classModel: {fileID: 645446141341893571, guid: e09c47ad4f9e33643818871ec9288c23, type: 3}
   Heart: 200
   Depend: 0.9
-  Strength: 3
-  attackCoolDown: 5
+  Strength: 18
+  attackCoolDown: 1
   Dexterity: 4
   numberProjective: 1
   skillCoolDown: 20
   SizeOfSkill: 1
-  StrengthOfSkill: 1.2
+  StrengthOfSkill: 50
   basisAttack: {fileID: 0}
   Skill: {fileID: 0}

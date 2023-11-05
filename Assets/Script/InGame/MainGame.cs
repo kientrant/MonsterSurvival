@@ -1,8 +1,11 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainGame : MonoBehaviour
 {
@@ -16,15 +19,15 @@ public class MainGame : MonoBehaviour
     private ValueTranser vT;
     public int frameRate = 120;
 
-    public GameObject infoUI, pauseUI, upgradeUI, gameOverUI;
+    public GameObject infoUI, pauseUI, upgradeUI;
+    public Button reset, resume, quit2menu;
     public static bool isUpgrade = false;
     public static bool isPause = false;
+    public static bool isGameOver = false;
 
     public PlayerData[] playerDatas;
-    public PlayerData currentPlayer;
+    private PlayerData currentPlayer;
     private Transform playerSpawnPoint;
-
-    private string SceneName = "MainGameScene";
 
     private void Awake()
     {
@@ -34,9 +37,7 @@ public class MainGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         playerSpawnPoint = GameObject.Find("PlayerSpawnPoint").transform;
-        //LoadMap(1);
         GameObject go = Instantiate(player[vT.ClassPlayer - 1], playerSpawnPoint.position, Quaternion.identity);
         currentPlayer = playerDatas[vT.ClassPlayer - 1];
         PlayerController.playerData = currentPlayer;
@@ -46,18 +47,13 @@ public class MainGame : MonoBehaviour
         pauseUI.SetActive(false);
         upgradeUI.SetActive(false);
         infoUI.SetActive(true);
-        gameOverUI.SetActive(false);
-    }
-
-    private async void LoadMap(int map_index)
-    {
-        GameObject map = Instantiate(maps[vT.MapName - 1], playerSpawnPoint.position, Quaternion.identity);
     }
 
     // Update is called once per frame
+    private bool isPaused = false;
+
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
@@ -66,29 +62,29 @@ public class MainGame : MonoBehaviour
         if (isUpgrade)
         {
             ToggleUpgarde();
-        } else
+        }
+        else
         {
             unToggleUpgarde();
         }
-
     }
 
     private void TogglePause()
     {
-        if (Time.timeScale == 1)
+        if (!isPaused)
         {
             Time.timeScale = 0f;
             infoUI.SetActive(false);
             pauseUI.SetActive(true);
-            isPause = true;
+            isPaused = true;
         }
-        if (Time.timeScale == 0f) {
+        else
+        {
             Time.timeScale = 1f;
             infoUI.SetActive(true);
             pauseUI.SetActive(false);
-            isPause = false;
+            isPaused = false;
         }
-
     }
 
     public void ToggleUpgarde()
@@ -109,11 +105,13 @@ public class MainGame : MonoBehaviour
 
     public virtual void Reset ()
     {
-        SceneManager.LoadScene(this.SceneName);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
     public void Resume ()
     {
+        isPaused = false; // Set isPaused to true before resuming
         TogglePause();
     }
 

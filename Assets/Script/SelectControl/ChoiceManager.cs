@@ -14,10 +14,16 @@ public class ChoiceManager : MonoBehaviour
 
     public void Play()
     {
-        if (vT.ClassPlayer != 0 && vT.ClassPlayer != 0)
+        if (vT.ClassPlayer != 0 && vT.MapName != 0)
         {
-            TransitionManager.Instance().Transition(2, transitionSettings, delayTransiton);
+            //load scene theo  map choi
+            TransitionManager.Instance().Transition(vT.MapName + 1, transitionSettings, delayTransiton);
         }
-        
+
+    }
+
+    public void Quit()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4691706718491137394}
   - component: {fileID: 8762292507048299022}
   - component: {fileID: 5612061916618168164}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FireCastSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
