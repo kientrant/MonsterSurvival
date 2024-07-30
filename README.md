@@ -1,0 +1,1 @@
+Welcome to the MonsterSurvival Game project! This is my first game development project, built using Unity. The game challenges players to survive for as long as possible in a hostile environment filled with monsters. Collect resources, avoid hazards, and see how long you can last!
